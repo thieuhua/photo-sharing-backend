@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
-
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+console.log("Kiểm tra link DB:", process.env.MONGODB_URL);
 const models = require("../modelData/models.js");
 
 const User = require("../db/userModel.js");
@@ -11,7 +12,7 @@ const versionString = "1.0";
 
 async function dbLoad() {
   try {
-    await mongoose.connect(process.env.DB_URL);
+    await mongoose.connect(process.env.MONGODB_URL);
     console.log("Successfully connected to MongoDB Atlas!");
   } catch (error) {
     console.log("Unable connecting to MongoDB Atlas!");
